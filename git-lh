@@ -27,8 +27,6 @@ else
   end
 end
 
-p tmp_file
-
 revs = `#{git} log --pretty=format:%H #{last_commit}..HEAD`.split(/\n/).reverse
 
 if revs.size.zero?
@@ -67,9 +65,9 @@ revs.each do |revision|
   request.body = xml
   response = Net::HTTP.start("#{LIGHTHOUSE_ACCOUNT}.lighthouseapp.com").request(request)
   
-  puts " Pushed rev #{revision} (#{log}). response: #{response.message}"
+  puts ">> Pushed rev #{revision} (#{log}). response: #{response.message}"
 
   sleep 0.3
 end
 File.write(tmp_file, revs.last)
-puts "Update version file #{tmp_file} to #{revs.last}"
+puts "Done"
