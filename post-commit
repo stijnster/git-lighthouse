@@ -1,0 +1,2 @@
+echo "HERE IS THE OUTPUT;"
+git log -1 HEAD
